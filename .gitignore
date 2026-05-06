@@ -1,2 +1,27 @@
+# Build artifacts
+build/
+.gradle/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar
+*.tar.gz
+
+# RMI-IIOP artifacts
+server.ior
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
 
 # Made with Bob
