@@ -1,17 +1,16 @@
 # RMI-IIOP Test Project
 
-This project demonstrates a Java 8 client connecting to a Yoko server (running on Semeru 17) using RMI-IIOP with an enum return type.
+This project demonstrates a Java 8 client connecting to a Yoko server using RMI-IIOP with an enum return type.
 
 ## Project Structure
 
 - **Remote Interface**: `DayService` - Returns a `WeekDay` enum from `getDayOfWeek()` method
 - **Enum**: `WeekDay` - Represents days of the week (MONDAY through SUNDAY)
 - **Implementation**: `DayServiceImpl` - Checks the current day and returns the appropriate enum value
-- **Server**: Runs on Semeru 17 with Yoko 1.6.1 libraries
-- **Client**: Runs on Java 8 (Zulu 8.0.492)
+- **Server**: Runs on Java 11
+- **Client**: Runs on Java 8
 
 ## Prerequisites
-
 
 - Java 8
 - Java 11
@@ -41,28 +40,28 @@ This generates:
 
 ### Step 1: Start the Server
 
-In one terminal:
+In one terminal, set up Java 11, and run:
 
 ```bash
 ./run-server.sh
 ```
 
 The server will:
-- Start with Semeru 17 and Yoko libraries
+- Start with Java 11 and Yoko libraries
 - Print the IOR (Interoperable Object Reference)
 - Save the IOR to `server.ior` file
 - Wait for client connections
 
 ### Step 2: Run the Client
 
-In another terminal:
+In another terminal, set up Java 8, and run:
 
 ```bash
 ./run-client.sh
 ```
 
 The client will:
-- Start with Java 8 (Zulu 8.0.492)
+- Start with Java 8
 - Read the IOR from `server.ior`
 - Connect to the server
 - Call `getDayOfWeek()` method
@@ -115,18 +114,11 @@ The project is compiled with Java 8 compatibility:
 - `sourceCompatibility = JavaVersion.VERSION_1_8`
 - `targetCompatibility = JavaVersion.VERSION_1_8`
 
-## Troubleshooting
-
-1. **Server won't start**: Ensure Semeru 17 is installed via SDKMAN
-2. **Client can't connect**: Make sure `server.ior` file exists and server is running
-3. **Stub generation fails**: Verify Java 8 is installed and rmic is available
-4. **ClassNotFoundException**: Rebuild the project with `gradle build`
-
 ## Testing the Problem
 
 This setup recreates the scenario where:
 - A Java 8 client uses RMI-IIOP stubs generated with Java 8's rmic
-- The server runs with modern Yoko libraries on Java 17
+- The server runs with modern Yoko libraries on Java 11
 - An enum is passed as a return value from a remote method
 
 This can be used to test compatibility issues between different Java versions and CORBA implementations.
