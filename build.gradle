@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    // Yoko dependencies from GitHub releases v1.6.1
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+// Task to compile with Java 8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+// Server application
+task runServer(type: JavaExec) {
+    mainClass = 'com.example.rmi.Server'
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperty 'java.naming.factory.initial', 'com.sun.jndi.cosnaming.CNCtxFactory'
+    systemProperty 'java.naming.provider.url', 'iiop://localhost:1050'
+}
+
+// Client application (to be run with Java 8)
+task runClient(type: JavaExec) {
+    mainClass = 'com.example.rmi.Client'
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperty 'java.naming.factory.initial', 'com.sun.jndi.cosnaming.CNCtxFactory'
+    systemProperty 'java.naming.provider.url', 'iiop://localhost:1050'
+}
