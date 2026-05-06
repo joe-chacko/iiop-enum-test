@@ -12,10 +12,9 @@ This project demonstrates a Java 8 client connecting to a Yoko server (running o
 
 ## Prerequisites
 
-- SDKMAN installed with:
-  - Java 8 (Zulu 8.0.492) - `sdk install java 8.0.492-zulu`
-  - Java 17 (Semeru 17.0.13) - `sdk install java 17.0.13-sem`
-- Gradle
+
+- Java 8
+- Java 11
 
 ## Build
 
