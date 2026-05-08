@@ -13,10 +13,11 @@ echo "Running server with Java version:"
 java -version
 
 # Build the classpath with all Yoko jars
-CLASSPATH="build/classes/java/main"
+YOKO_JARS="$(find lib/ -maxdepth 1 -name "*.jar" |paste -sd :)"
+CLASSPATH="build/classes/java/main:$YOKO_JARS"
 
 echo ""
-echo "Starting RMI-IIOP Server..."
+echo "Starting RMI-IIOP Server with Yoko..."
 echo ""
 
 java -cp "$CLASSPATH" com.example.rmi.Server

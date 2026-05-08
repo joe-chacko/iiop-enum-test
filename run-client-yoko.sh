@@ -9,14 +9,20 @@
 # SPDX-License-Identifier: EPL-2.0
 ###############################################################################
 
-echo "Running server with Java version:"
+echo "Running client with Java version:"
 java -version
 
-# Build the classpath with all Yoko jars
-CLASSPATH="build/classes/java/main"
+# Build the classpath - client needs the stubs and interface classes
+find libs/ -maxdepth 1 -name "*.jar" |paste -sd :
+exit
+YOKO_JARS="$(find lib/ -maxdepth 1 -name "*.jar" |paste -sd :)"
+CLASSPATH="build/classes/java/main:$YOKO_JARS"
+
 
 echo ""
-echo "Starting RMI-IIOP Server..."
+echo "Starting RMI-IIOP Client with Yoko..."
+echo "Make sure server is running and server.ior file exists"
 echo ""
 
-java -cp "$CLASSPATH" com.example.rmi.Server
+java -cp "$CLASSPATH" \
+    com.example.rmi.Client
