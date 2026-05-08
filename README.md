@@ -17,17 +17,22 @@ This project demonstrates a Java 8 client connecting to a Yoko server using RMI-
 
 ## Build
 
+Set up Java 8, e.g.
+```bash
+sdk use java 8.0.492-zulu
+```
+Then:
 ```bash
 gradle build
 ```
 
 ## Generate RMI-IIOP Stubs
 
-The stubs are generated using Java 8's rmic tool with the -iiop flag:
+The stubs are generated using Java 8's rmic tool with the -iiop -poa -always flags:
 
 ```bash
-~/.sdkman/candidates/java/8.0.492-zulu/bin/rmic -iiop \
-  -classpath build/classes/java/main:libs/* \
+rmic -iiop -poa -always \
+  -classpath build/classes/java/main:lib/* \
   -d build/classes/java/main \
   com.example.rmi.DayServiceImpl
 ```
@@ -43,7 +48,7 @@ This generates:
 In one terminal, set up Java 11, and run:
 
 ```bash
-./run-server.sh
+./run-server-yoko.sh
 ```
 
 The server will:

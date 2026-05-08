@@ -1,3 +1,6 @@
+# Config artifacts
+lib/
+
 # Build artifacts
 build/
 .gradle/
