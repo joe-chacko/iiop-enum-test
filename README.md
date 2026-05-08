@@ -26,8 +26,8 @@ gradle build
 The stubs are generated using Java 8's rmic tool with the -iiop flag:
 
 ```bash
-~/.sdkman/candidates/java/8.0.492-zulu/bin/rmic -iiop \
-  -classpath build/classes/java/main:libs/* \
+~/.sdkman/candidates/java/8.0.492-zulu/bin/rmic -iiop -poa -always \
+  -classpath build/classes/java/main:lib/* \
   -d build/classes/java/main \
   com.example.rmi.DayServiceImpl
 ```
